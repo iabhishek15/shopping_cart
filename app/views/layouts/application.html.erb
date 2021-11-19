@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ShoppingCart</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' %>
+    <%= stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' %>
+    <%= stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Raleway:400,100' %>
+    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'%>
+    <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'%>
+    <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <style>
+      .main {
+        width:60%;
+      }
+    </style>
+    <%= render 'layout_template/nav' %>
+    <div class="message-div" style="text-align:center;">
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
+      <p class="navbar-text float-right">
+    </div>
+    <div class ="container main">
+      <%= yield %>
+    </div>
+    <br />
+    <%= render 'layout_template/footer.html.erb' %>
+  </body>
+  <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'%>
+  <%= javascript_include_tag 'https://code.jquery.com/jquery.min.js'%>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</html>

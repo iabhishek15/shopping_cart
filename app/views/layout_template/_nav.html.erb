@@ -1,0 +1,106 @@
+<!-- Company Logo -->
+<div class="site-branding-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="logo">
+          <%= link_to(home_path, option={},html_options={class:'logo-image'}) do %>
+            <%= image_tag 'img/logo.png' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="shopping-item">
+          <%= link_to(cart_path,option={}, html_options={class:'cart-nav'}) do %>
+            Cart - <span>$100</span><i class="fa fa-shopping-cart"></i> <span class="product-count">5</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br />
+
+<div class="mainmenu-area">
+  <div class="container">
+    <div class="row">
+
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><%= link_to 'Home', home_path %></li>
+          <li><%= link_to 'Shop', shop_path %></li>
+          <li>
+            <%= link_to(checkout_path,option={}, html_options={class:''}) do %>
+              <i class="fa fa-user"></i> Checkout
+            <% end %>
+          </li>
+          <li><a href="#">Contact</a></li>
+          <% if admin_logged_in %>
+            
+          <% end %>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to(edit_user_registration_path,option={}, html_options={class:''}) do %>
+                <i class="fa fa-user"></i>My Account
+              <% end %>
+            </li>
+            <li>
+              <%= link_to(destroy_user_session_path, option={method: :delete}, html_options={class:''}) do %>
+                <i class="fa fa-user"></i>LOGOUT
+              <% end %>
+            </li>
+          <% elsif admin_logged_in %>
+            <li>
+              <%= link_to(admin_logout_path, option={method: :delete}, html_options={class:''}) do %>
+                <i class="fa fa-user"></i>Admin LOGOUT
+              <% end %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to(new_user_registration_path, option={}, html_options={class:''}) do %>
+                <i class="fa fa-user"></i>SIGNUP
+              <% end %>
+            </li>
+            <li>
+              <%= link_to(new_user_session_path, option={}, html_options={class:''}) do %>
+                <i class="fa fa-user"></i>LOGIN
+              <% end %>
+            </li>
+            <li>
+              <%= link_to(admin_login_path, option={}, html_options={class:''}) do %>
+                <i class="fa fa-user"></i>Admin
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="product-big-title-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="product-bit-title text-center">
+          <h2>Shop</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
