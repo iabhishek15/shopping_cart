@@ -1,39 +1,59 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
-
-<p>
-  <strong>Processor:</strong>
-  <%= @product.processor %>
-</p>
-
-<p>
-  <strong>Operating system:</strong>
-  <%= @product.operating_system %>
-</p>
-
-<p>
-  <strong>Memory:</strong>
-  <%= @product.memory %>
-</p>
-
-<p>
-  <strong>Storage:</strong>
-  <%= @product.storage %>
-</p>
-
-<p>
-  <strong>Display:</strong>
-  <%= @product.display %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
-
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
+
+
+<div class="product-main-img">
+    <img src="img/product-2.jpg" alt="">
+</div>
+<% if @product.product_image.attached? %>
+  <%= image_tag @product.product_image %>
+<% end %>
+
+<table class="table">
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="left-show col-sm-3">Name</td>
+      <td><%= @product.name %></td>
+    </tr>
+    <tr>
+      <td class="left-show">Description</td>
+      <td><%= @product.description %></td>
+    </tr>
+    <tr>
+      <td class="left-show">Processor</td>
+      <td><%= @product.processor %></td>
+    </tr>
+    <tr>
+      <td class="left-show">Operating System</td>
+      <td><%= @product.operating_system %></td>
+    </tr>
+    <tr>
+      <td class="left-show">Storage</td>
+      <td><%= @product.storage %></td>
+    </tr>
+    <tr>
+      <td class="left-show">Display</td>
+      <td><%= @product.display %></td>
+    </tr>
+    <tr>
+      <td class="left-show">Price</td>
+      <td><%= @product.price %></td>
+    </tr>
+    <tr>
+      <td class="left-show">Quantity</td>
+      <td><%= @product.quantity %></td>
+    </tr>
+  </tbody>
+</table>
+<style>
+.main {
+  width:60%;
+}
+.left-show {
+  background-color: #F5F5F5;
+}
+</style>

@@ -11,42 +11,99 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <% if product.product_image.attached? %>
+    <%= image_tag product.product_image %>
+  <% end %>
+
+  <div class="form-group">
+    <div class="input-group">
+      <label>Upload Product Image</label>
+      <%= form.file_field :product_image %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :processor %>
-    <%= form.text_field :processor %>
+
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon">
+        <label>Name</label>
+      </div>
+      <%= form.text_field :name, class:'form-control input-md'%>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :operating_system %>
-    <%= form.text_field :operating_system %>
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon">
+        <label>Description</label>
+      </div>
+      <%= form.text_area :description, class:'form-control input-md',rows:7%>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :memory %>
-    <%= form.text_field :memory %>
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon">
+        <label>Processor</label>
+      </div>
+      <%= form.text_field :processor, class:'form-control input-md'%>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :storage %>
-    <%= form.text_field :storage %>
+
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon">
+        <label>Operating System</label>
+      </div>
+      <%= form.text_field :operating_system, class:'form-control input-md'%>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :display %>
-    <%= form.text_field :display %>
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon">
+        <label>Storage</label>
+      </div>
+      <%= form.text_field :storage, class:'form-control input-md'%>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price %>
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon">
+        <label>Display</label>
+      </div>
+      <%= form.text_field :display, class:'form-control input-md'%>
+    </div>
   </div>
 
-  <div class="actions">
+
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon">
+        <label>Price</label>
+      </div>
+      <%= form.number_field :price, class:'form-control input-md'%>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon">
+        <label>Quantity</label>
+      </div>
+      <%= form.number_field :quantity, class:'form-control input-md'%>
+    </div>
+  </div>
+
+  <div class="form-group">
     <%= form.submit %>
   </div>
 <% end %>
+
+<style>
+  .main {
+    width:50%;
+  }
+</style>

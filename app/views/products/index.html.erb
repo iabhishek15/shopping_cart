@@ -1,39 +1,71 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Products</h1>
+<h1 style="text-align:center;">Products</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Processor</th>
-      <th>Operating system</th>
-      <th>Memory</th>
-      <th>Storage</th>
-      <th>Display</th>
-      <th>Price</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @products.each do |product| %>
+<div class = "container checkout-table">
+  <%= link_to 'New Product', new_product_path, class:'btn btn-primary'%>
+  <table cellspacing="0" class="shop_table cart">
+    <thead>
       <tr>
-        <td><%= product.name %></td>
-        <td><%= product.processor %></td>
-        <td><%= product.operating_system %></td>
-        <td><%= product.memory %></td>
-        <td><%= product.storage %></td>
-        <td><%= product.display %></td>
-        <td><%= product.price %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th class="col-sm-2">&nbsp;</th>
+        <th class="col-sm-2">Name</th>
+        <th class="col-sm-1">Price</th>
+        <th class="col-sm-1">Quantity</th>
+        <th class="col-sm-1">Total</th>
+        <th class="col-sm-3">Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td>
+            <%= link_to(product_path(product.id),option={}) do %>
+              <%= image_tag product.product_image, class:'shop_thumbnail'%>
+            <% end %>
+          </td>
 
-<br>
+          <td>
+            <span><%= product.name %></span>
+          </td>
 
-<%= link_to 'New Product', new_product_path %>
+          <td>
+            <span>$<%= product.price %></span>
+          </td>
+
+          <td>
+            <span><%= product.quantity %></span>
+          </td>
+
+          <td>
+            <span>$<%= product.quantity * product.price %></span>
+          </td>
+
+          <td>
+            <%= link_to 'Show', product %>
+            <%= link_to 'Edit', edit_product_path(product) %>
+            <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @products, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>
+
+
+<style>
+.main {
+  width: 100%;
+}
+.checkout-table {
+  width:60%;
+  margin-top:50px;
+}
+.shop_thumbnail {
+  height:80px !important;
+  width:70px !important;
+}
+.checkout-total{
+  width:60%;
+}
+</style>

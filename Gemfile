@@ -3,6 +3,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.8'
 
+#will paginate
+gem 'will_paginate', '~> 3.3'
+
+gem 'will_paginate-bootstrap4'
+
 #devise
 gem 'devise'
 
