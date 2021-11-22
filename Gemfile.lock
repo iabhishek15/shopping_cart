@@ -27,6 +27,11 @@ GEM
     activejob (5.2.6)
       activesupport (= 5.2.6)
       globalid (>= 0.3.6)
+    activemerchant (1.124.0)
+      activesupport (>= 4.2)
+      builder (>= 2.1.2, < 4.0.0)
+      i18n (>= 0.6.9)
+      nokogiri (~> 1.4)
     activemodel (5.2.6)
       activesupport (= 5.2.6)
     activerecord (5.2.6)
@@ -81,6 +86,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     duktape (2.6.0.0)
     erubi (1.10.0)
     execjs (2.8.1)
@@ -203,12 +212,14 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
+  activemerchant
   bootsnap (>= 1.1.0)
   byebug
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
+  dotenv-rails
   duktape
   jbuilder (~> 2.5)
   pg

@@ -1,7 +1,13 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+#https://ancient-sierra-59488.herokuapp.com/
+
 ruby '2.6.8'
+
+gem 'activemerchant'
+
+gem 'dotenv-rails', groups: [:development, :test]
 
 #will paginate
 gem 'will_paginate', '~> 3.3'

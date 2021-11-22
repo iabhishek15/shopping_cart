@@ -1,12 +1,20 @@
 class CartController < ApplicationController
   def index
     @orders = User.find(current_user.id).orders.paginate(page: params[:page], per_page: 4)
+    if request.post?
+      order = Order.find(params[:id])
+      order.update(:quantity => params[:quantity])
+      redirect_to cart_path
+    end
+  end
+
+  def update
   end
 
   def delete
     order = Order.find(params[:id].to_i)
     order.delete
-    redirect_to cart_path 
+    redirect_to cart_path
   end
 
 

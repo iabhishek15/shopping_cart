@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   root 'home#index', as: 'home'
   get '/shop', to:'home#shop',as:'shop'
   get '/cart', to:'cart#index',as:'cart'
+  post '/cart/:id', to:'cart#index',as:'cart_post'
   get '/checkout', to:'home#checkout',as:'checkout'
+  post '/checkout', to:'home#checkout',as:'checkout_post'
 
   #admin routes
   get '/admin/sessions/login',to:'admin/sessions#login', as:'admin_login'
@@ -22,5 +24,11 @@ Rails.application.routes.draw do
   #adding to cart
   get '/cart/add/:id', to: 'cart#add', as: 'add_cart'
   post '/cart/add/:id', to: 'cart#add', as: 'add_cart_post'
+  get '/cart/update/:id', to: 'cart#update', as: 'update_cart'
+  post '/cart/update/:id', to: 'cart#update', as: 'update_cart_post'
   delete '/cart/order/delete/:id', to: 'cart#delete', as: 'cart_order_delete'
+
+  #payment /currently using active merchant
+  get '/payment', to:'payment#index', as: 'payment'
+  post '/payment', to:'payment#index', as: 'payment_post'
 end

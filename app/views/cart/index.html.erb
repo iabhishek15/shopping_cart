@@ -33,9 +33,12 @@
           </td>
 
           <td>
-            <div class="quantity buttons_added">
-              <input type="number" size="4" class="input-text qty text" title="Qty" value="1" min="0" step="1">
-            </div>
+            <%= form_with(url: cart_post_path(order.id), method: :post) do |form| %>
+              <div class="input-group">
+                <%= form.number_field :quantity, value:order.quantity%>
+                <%= form.submit 'update'%>
+              </div>
+            <% end %>
           </td>
 
           <td class="">
@@ -79,6 +82,27 @@
     </table>
   </div>
 </div>
+
+
+<script>
+//backspace does not work in keypress but it works in keydown
+function quantityChange(id) {
+  const url = 'http://localhost:3000/cart';
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify({
+      quantity_id: id
+    })
+  })
+  .catch (err => {
+    console.log("error : " + err);
+  })
+}
+</script>
 
 
 <style>
