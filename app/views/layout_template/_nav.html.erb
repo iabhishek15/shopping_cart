@@ -13,11 +13,11 @@
 
       <div class="navbar-collapse collapse ">
         <ul class="nav navbar-nav nav-left">
-          <li><%= link_to 'Home', home_path %></li>
-          <li><%= link_to 'Shop', shop_path %></li>
+          <li><%= link_to 'Home', home_path, class:'home' %></li>
+          <li><%= link_to 'Shop', shop_path, class:'show' %></li>
           <% if current_user %>
             <li>
-              <%= link_to(cart_path,option={}, html_options={class:'cart-nav'}) do %>
+              <%= link_to(cart_path,option={}, html_options={class:'cart-nav cart'}) do %>
                 Cart - <span>$100</span><i class="fa fa-shopping-cart"></i>
                 <span class="product-count"><%= @cart_count %></span>
               <% end %>
@@ -25,18 +25,18 @@
           <% end %>
           <% if admin_logged_in %>
             <li>
-              <%= link_to(products_path,option={}, html_options={class:''}) do %>
+              <%= link_to(products_path,option={}, html_options={class:'products'}) do %>
                 <i class="fa fa-cart"></i> Products
               <% end %>
             </li>
             <li>
-              <%= link_to(new_product_path,option={}, html_options={class:''}) do %>
+              <%= link_to(new_product_path,option={}, html_options={class:'new-products'}) do %>
                 <i class="fa fa-user"></i> AddItem
               <% end %>
             </li>
           <% end %>
           <li>
-            <%= form_with(url: shop_post_path,local:true, method: :post,class:'navbar-form navbar-left search-form') do |form| %>
+            <%= form_with(url: search_post_path,local:true, method: :post,class:'navbar-form navbar-left search-form') do |form| %>
               <div class='input-group'>
                 <%= form.text_field :data, class:'form-control', placeholder:'search keyword' %>
                 <div class = "input-group-btn">
@@ -52,41 +52,41 @@
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
             <li>
-              <%= link_to(edit_user_registration_path,option={}, html_options={class:''}) do %>
+              <%= link_to(edit_user_registration_path,option={}, html_options={class:'my-account'}) do %>
                 <i class="fa fa-user"></i>My Account
               <% end %>
             </li>
             <li>
-              <%= link_to(destroy_user_session_path, option={method: :delete}, html_options={class:''}) do %>
+              <%= link_to(destroy_user_session_path, option={method: :delete}, html_options={class:'logout'}) do %>
                 <i class="fa fa-user"></i>LOGOUT
               <% end %>
             </li>
           <% elsif admin_logged_in %>
             <% if super_user_logged_in %>
               <li>
-                <%= link_to(admin_signup_path, html_options={class:''}) do %>
+                <%= link_to(admin_signup_path, html_options={class:'admin-signup'}) do %>
                   <i class="fa fa-user"></i>Add Admin
                 <% end %>
               </li>
             <% end %>
             <li>
-              <%= link_to(admin_logout_path, option={method: :delete}, html_options={class:''}) do %>
+              <%= link_to(admin_logout_path, option={method: :delete}, html_options={class:'admin-logout'}) do %>
                 <i class="fa fa-user"></i>Admin LOGOUT
               <% end %>
             </li>
           <% else %>
             <li>
-              <%= link_to(new_user_registration_path, option={}, html_options={class:''}) do %>
+              <%= link_to(new_user_registration_path, option={}, html_options={class:'signup'}) do %>
                 <i class="fa fa-user"></i>SIGNUP
               <% end %>
             </li>
             <li>
-              <%= link_to(new_user_session_path, option={}, html_options={class:''}) do %>
+              <%= link_to(new_user_session_path, option={}, html_options={class:'login'}) do %>
                 <i class="fa fa-user"></i>LOGIN
               <% end %>
             </li>
             <li>
-              <%= link_to(admin_login_path, option={}, html_options={class:''}) do %>
+              <%= link_to(admin_login_path, option={}, html_options={class:'admin-login'}) do %>
                 <i class="fa fa-user"></i>Admin
               <% end %>
             </li>

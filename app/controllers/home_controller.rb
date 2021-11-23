@@ -2,12 +2,8 @@ class HomeController < ApplicationController
   def index
   end
 
-  # def search
-  #   @products = Product.paginate(page: params[:page], per_page:8)
-  # end
-
-  def shop
-    @products = Product.paginate(page: params[:page], per_page: 8)
+  def search
+    @products = Product.paginate(page: params[:page], per_page:8)
     if request.post?
       data = "%#{params[:data]}%"
       @products = Product.all.where(
@@ -26,5 +22,9 @@ class HomeController < ApplicationController
         flash[:alert] = nil
       end
     end
+  end
+
+  def shop
+    @products = Product.paginate(page: params[:page], per_page: 8)
   end
 end

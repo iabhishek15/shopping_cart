@@ -12,8 +12,8 @@ Rails.application.routes.draw do
 
 
   #search url
-  # get '/search', to:'home#search', as:'search'
-  # post '/search', to:'home#search', as:'search_post'
+  get '/search', to:'home#search', as:'search'
+  post '/search', to:'home#search', as:'search_post'
 
   #admin routes
   get '/admin/sessions/login',to:'admin/sessions#login', as:'admin_login'

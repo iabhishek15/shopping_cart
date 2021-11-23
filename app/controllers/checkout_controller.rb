@@ -1,8 +1,7 @@
 class CheckoutController < ApplicationController
-
+  before_action :set_amount
   def index
     @location = Location.new
-    @order_price = User.find(current_user.id).orders.length
   end
 
   def payment
@@ -15,7 +14,7 @@ class CheckoutController < ApplicationController
         :password => 'password'
       )
 
-      amount = 1000  # $10.00
+      #amount = 1000  # $10.00
       credit_card = ActiveMerchant::Billing::CreditCard.new(
         :first_name         => "Abhishek",
         :last_name          => 'Singh',
@@ -26,20 +25,30 @@ class CheckoutController < ApplicationController
       )
     end
     # Validating the card automatically detects the card type
-    #puts "*****************************#{credit_card.validate}"
     if credit_card.validate.empty?
       # Capture $10 from the credit card
-      response = gateway.purchase(amount, credit_card)
+      response = gateway.purchase(@amount * 100, credit_card)
 
       if response.success?
         #puts "Successfully charged $#{sprintf("%.2f", amount / 100)} to the credit card #{credit_card.display_number}"
-        redirect_to successfull_payment_path, notice: "Successfully charged $#{sprintf("%.2f", amount / 100)} to the credit card #{credit_card.display_number}"
+        current_user.orders.each do |order|
+          order.destroy
+        end
+        redirect_to successfull_payment_path, notice: "Successfully charged $#{sprintf("%.2f", @amount)} to the credit card #{credit_card.display_number}"
       else
         #raise StandardError, response.message
-        redirect_to checkout_path, alert:'Enter valid card details'
+        redirect_to checkout_path, alert: "Transaction was unsuccessful!"
       end
     else
-      redirect_to checkout_path, alert: 'Improper Card details format'
+      redirect_to checkout_path, alert: 'Enter valid card details'
+    end
+  end
+
+  private
+  def set_amount
+    @amount = 0
+    current_user.orders.each do |order|
+      @amount += order.quantity * Product.find(order.product_id).price
     end
   end
 end
