@@ -2,17 +2,17 @@
 
 <h1 style="text-align:center;">Products</h1>
 
-<div class = "container checkout-table">
+<div class = "checkout-table">
   <%= link_to 'New Product', new_product_path, class:'btn btn-primary'%>
   <table cellspacing="0" class="shop_table cart">
     <thead>
       <tr>
-        <th class="col-sm-2">&nbsp;</th>
-        <th class="col-sm-2">Name</th>
+        <th class="col-sm-2">Product Image</th>
+        <th class="col-md-2 col-sm-1">Name</th>
         <th class="col-sm-1">Price</th>
         <th class="col-sm-1">Quantity</th>
         <th class="col-sm-1">Total</th>
-        <th class="col-sm-3">Actions</th>
+        <th class="col-md-2 col-sm-2">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -45,6 +45,7 @@
             <%= link_to 'Edit', edit_product_path(product) %>
             <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
           </td>
+
         </tr>
       <% end %>
     </tbody>
@@ -59,7 +60,7 @@
 }
 .checkout-table {
   width:60%;
-  margin-top:50px;
+  margin:auto;
 }
 .shop_thumbnail {
   height:80px !important;
@@ -67,5 +68,14 @@
 }
 .checkout-total{
   width:60%;
+}
+@media only screen and (max-width: 600px) {
+  .checkout-table {
+    width:100%;
+    margin:auto;
+  }
+  .checkout-table tr th {
+    font-size:13px;
+  }
 }
 </style>

@@ -1,39 +1,9 @@
-<div class="single-product-area">
-  <div class="zigzag-bottom"></div>
-  <div class="container">
-    <div class="row">
-      <% @products.each do |product| %>
-        <div class="col-md-3 col-sm-6">
-          <div class="single-shop-product">
-            <div class="product-upper">
-              <%= image_tag product.product_image %>
-            </div>
-            <h2><a href="">Apple new mac book 2015 March :P</a></h2>
-            <div class="product-carousel-price">
-              <ins>$<%= product.price%></ins>
-            </div>
-            <div class="product-option-shop">
-              <% if current_user %>
-                <%= link_to 'Add to cart', add_cart_post_path(product.id), method: :post, class:'add_to_cart_button'%>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <%= will_paginate @products, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
-      </div>
-    </div>
-  </div>
-</div>
-
-
+<h1 class="shop-heading">Shop</h1>
+<%= render 'products', products: @products, current_user: current_user %>
 
 <style>
-.main {
-  width:100%;
+.shop-heading{
+  text-align:center;
+  color:dimgrey;    
 }
 </style>

@@ -20,12 +20,13 @@ class CartController < ApplicationController
 
   def add
     if request.post?
-      current_user
-      order = Order.create({
-          :user_id => current_user.id,
-          :product_id => params[:id].to_i,
-          :quantity => 1
-      })
+      unless Order.find_by_product_id(params[:id])
+        order = Order.create({
+            :user_id => current_user.id,
+            :product_id => params[:id].to_i,
+            :quantity => 1
+        })
+      end
       redirect_to shop_path
     end
   end

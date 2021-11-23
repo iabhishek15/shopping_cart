@@ -1,0 +1,30 @@
+<h2>Add Admin</h2>
+
+<%= form_with(model:@admin, url: admin_signup_post_path, local:true) do |f| %>
+  <% if @admin.errors.any?%>
+    <h3><%= @admin.errors.count %> caused admin from getting created</h3>
+    <ul>
+      <% @admin.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :email %><br />
+    <%= f.email_field :email,class:'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, class:'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'confirm password' %><br />
+    <%= f.password_field :password_confirmation, class:'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Add Admin",class:'btn btn-primary' %>
+  </div>
+<% end %>

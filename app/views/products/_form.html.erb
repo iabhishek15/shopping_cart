@@ -98,12 +98,17 @@
   </div>
 
   <div class="form-group">
-    <%= form.submit %>
+    <%= form.submit 'Create Product', class:'btn btn-primary' %>
   </div>
 <% end %>
 
 <style>
   .main {
     width:50%;
+  }
+  @media only screen and (max-width: 600px) {
+    .main {
+      width:80%;
+    }
   }
 </style>

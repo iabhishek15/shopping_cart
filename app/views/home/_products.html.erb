@@ -1,0 +1,39 @@
+<div class="single-product-area">
+  <div class="zigzag-bottom"></div>
+  <div class="container">
+    <div class="row">
+      <% products.each do |product| %>
+        <div class="col-md-3 col-sm-6">
+          <div class="single-shop-product">
+            <div class="product-upper">
+              <%= image_tag product.product_image %>
+            </div>
+            <h2><%= link_to "#{product.name}",product%></h2>
+            <div class="product-carousel-price">
+              <ins>$<%= product.price%></ins>
+            </div>
+            <div class="product-option-shop">
+              <% if current_user %>
+                <%= link_to 'Add to cart', add_cart_post_path(product.id), method: :post, class:'add_to_cart_button'%>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <%= will_paginate products, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<style>
+.main {
+  width:100%;
+}
+</style>

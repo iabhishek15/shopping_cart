@@ -7,7 +7,7 @@ ruby '2.6.8'
 
 gem 'activemerchant'
 
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails'
 
 #will paginate
 gem 'will_paginate', '~> 3.3'

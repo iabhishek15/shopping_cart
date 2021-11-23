@@ -3,12 +3,12 @@
   <table cellspacing="0" class="shop_table cart">
     <thead>
       <tr>
-        <th class="col-sm-1">&nbsp;</th>
-        <th class="col-sm-2">&nbsp;</th>
-        <th class="col-sm-2">Product</th>
+        <th class="col-sm-1">Remove</th>
+        <th class="col-sm-2">Product Image</th>
+        <th class="col-md-2 cols-sm-1">Product</th>
         <th class="col-sm-1">Price</th>
         <th class="col-sm-1">Quantity</th>
-        <th class="col-sm-2">Total</th>
+        <th class="col-md-2 col-sm-1">Total</th>
       </tr>
     </thead>
     <tbody>
@@ -34,9 +34,13 @@
 
           <td>
             <%= form_with(url: cart_post_path(order.id), method: :post) do |form| %>
-              <div class="input-group">
-                <%= form.number_field :quantity, value:order.quantity%>
-                <%= form.submit 'update'%>
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  <%= form.number_field :quantity, value:order.quantity, class:'quantity-inn'%>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                  <%= form.submit 'update',class:'btn btn-primary quantity-btn'%>
+                </div>
               </div>
             <% end %>
           </td>
@@ -48,8 +52,7 @@
       <% end %>
       <tr>
         <td class="actions" colspan="6">
-          <input type="submit" value="Update Cart" name="update_cart" class="button">
-          <input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward">
+          <%= link_to 'Checkout', checkout_path, class:'btn btn-primary' %>
         </td>
       </tr>
     </tbody>
@@ -120,6 +123,26 @@ function quantityChange(id) {
 
 .checkout-total{
   width:60%;
+}
+.quantity-btn {
+  width:60px;
+  padding:2px !important;
+  font-size:13px;
+  margin-top:3px;
+}
+.quantity-inn{
+  width:40px;
+}
+
+@media only screen and (max-width: 600px) {
+  .checkout-table {
+    margin:0px;
+    padding:0px;
+    margin-left:-20px;
+  }
+  .checkout-table tr th {
+    font-size:12px;
+  }
 }
 
 </style>

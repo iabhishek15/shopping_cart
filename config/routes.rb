@@ -5,10 +5,15 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'home#index', as: 'home'
   get '/shop', to:'home#shop',as:'shop'
+  post '/shop', to:'home#shop',as:'shop_post'
+
   get '/cart', to:'cart#index',as:'cart'
   post '/cart/:id', to:'cart#index',as:'cart_post'
-  get '/checkout', to:'home#checkout',as:'checkout'
-  post '/checkout', to:'home#checkout',as:'checkout_post'
+
+
+  #search url
+  # get '/search', to:'home#search', as:'search'
+  # post '/search', to:'home#search', as:'search_post'
 
   #admin routes
   get '/admin/sessions/login',to:'admin/sessions#login', as:'admin_login'
@@ -29,6 +34,9 @@ Rails.application.routes.draw do
   delete '/cart/order/delete/:id', to: 'cart#delete', as: 'cart_order_delete'
 
   #payment /currently using active merchant
-  get '/payment', to:'payment#index', as: 'payment'
-  post '/payment', to:'payment#index', as: 'payment_post'
+  get '/checkout', to:'checkout#index', as: 'checkout'
+  post '/checkout', to:'checkout#index', as: 'checkout_post'
+  get '/checkout/payment', to:'checkout#payment', as: 'checkout_payment'
+  post '/checkout/payment', to:'checkout#payment', as: 'checkout_payment_post'
+  get '/checkout/payment/successfull', to: "checkout#successfull", as:'successfull_payment'
 end

@@ -1,32 +1,40 @@
 <div class="row">
   <div class="col-md-6 col-12">
+    <h1 class="shipping_head">Shipping Address</h1><br />
     <%= form_with(model: @location, url: checkout_post_path) do |form| %>
-      <div class = "form-group">
+      <div class="form-group">
+        <label or="NameOnCard">Country</label>
         <%= form.select :country, [:USA, :INDIA, :BRITAIN] %>
       </div>
-      <div class = "form-group">
-        <%= form.text_field :state, class:'form-control',placeholder:'State' %>
-      </div>
-      <div class = "form-group">
-        <%= form.text_field :city, class:'form-control',placeholder:'City'   %>
-      </div>
-
-      <div class="zip-code-group form-group">
-        <label for="ZIPCode">ZIP/Postal code</label>
+      <div class:"form-group">
+        <label>City</label>
         <div class="input-container">
-          <input id="ZIPCode" class="form-control" type="text" maxlength="10"></input>
-          <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="left" data-content="Enter the ZIP/Postal code for your credit card billing address."><i class="fa fa-question-circle"></i></a>
+          <%= form.text_field :city, id:"ZIPCode",class:"form-control",maxlength:"10"%>
         </div>
       </div>
-      <div class = "form-group">
-        <%= form.text_field :zip_code, class:'form-control',placeholder:'Zip Code'   %>
+      <div class:"form-group">
+        <label>State</label>
+        <div class="input-container">
+          <%= form.text_field :state, id:"ZIPCode",class:"form-control",maxlength:"10"%>
+        </div>
       </div>
-      <div class = "form-group">
-        <%= form.text_field :address, class:'form-control',placeholder:'Address'   %>
+
+      <div class:"form-group">
+        <label>ZIP/Postal code</label>
+        <div class="input-container">
+          <%= form.text_field :zip_code, id:"ZIPCode",class:"form-control",maxlength:"10"%>
+        </div>
       </div>
-      <div class = "form-group">
-        <%= form.submit 'Update Address', class:'btn btn-primary' %>
+
+      <div class:"form-group">
+        <label>Address</label>
+        <div class="input-container">
+          <%= form.text_field :address, id:"ZIPCode",class:"form-control",maxlength:"10"%>
+        </div>
       </div>
+      <br />
+        <%= form.submit 'Update Shipping Address', class:'btn btn-primary'%>
+      <br />
     <% end %>
   </div>
   <div class="col-md-6 col-12">
@@ -38,7 +46,7 @@
         <span class="amex"></span>
         <span class="discover"></span>
       </div>
-      <%= form_with(url: payment_post_path) do |f| %>
+      <%= form_with(url: checkout_payment_post_path) do |f| %>
         <div class="form-group">
           <label for="PaymentAmount">Payment amount</label>
           <div class="amount-placeholder">
@@ -48,11 +56,11 @@
         </div>
         <div class="form-group">
           <label or="NameOnCard">Name on card</label>
-          <%= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]], class:'form-control' %>
+          <%= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %>
         </div>
         <div class="form-group">
           <label for="CreditCardNumber">Card number</label>
-          <%= f.text_field :name,class:"null card-image form-control",id:'CreditCardNumber'%>
+          <%= f.text_field :number,class:"null card-image form-control",id:'CreditCardNumber'%>
         </div>
         <div class="expiry-date-group form-group">
           <label for="ExpiryDate">Expiry date</label>
@@ -61,7 +69,7 @@
         <div class="security-code-group form-group">
           <label for="SecurityCode">Security code</label>
           <div class="input-container" >
-            <%= f.text_field :security_code, class:"form-control", id:"SecurityCode"%>
+            <%= f.text_field :cvv, class:"form-control", id:"SecurityCode"%>
             <i id="cvc" class="fa fa-question-circle"></i>
           </div>
           <div class="cvc-preview-container two-card hide">
@@ -69,28 +77,46 @@
             <div class="visa-mc-dis-cvc-preview"></div>
           </div>
         </div>
-        <%= f.submit(id:'PayButton',class:'btn btn-block btn-success submit-button') do %>
+        <%= f.button :submit, class:"btn btn-block btn-primary submit-button",id:'PayButton' do %>
           <span class="submit-button-lock"></span>
           <span class="align-middle">Pay $500.00</span>
         <% end %>
-        <button id="PayButton" class="btn btn-block btn-success submit-button" type="submit">
-          <span class="submit-button-lock"></span>
-          <span class="align-middle">Pay $500.00</span>
-        </button>
       <% end %>
     </div>
   </div>
 </div>
 
+<script>
+$(function () {
+$('[data-toggle="popover"]').popover();
 
+$('#cvc').on('click', function(){
+  if ( $('.cvc-preview-container').hasClass('hide') ) {
+    $('.cvc-preview-container').removeClass('hide');
+  } else {
+    $('.cvc-preview-container').addClass('hide');
+  }
+});
+
+$('.cvc-preview-container').on('click', function(){
+  $(this).addClass('hide');
+});
+});
+</script>
 
 
 <style>
+.shipping_head {
+  color: #5D6F78;
+  font-size: 28px;
+  font-weight: 300;
+}
 .main {
   width:80%;
 }
 .stripe {
   width:100px;
 }
+
 
 </style>
